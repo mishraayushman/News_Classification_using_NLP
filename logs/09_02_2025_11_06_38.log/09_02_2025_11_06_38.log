@@ -1,0 +1,4 @@
+[ 2025-09-02 11:06:41,875 ] 21 root - INFO - reading data
+[ 2025-09-02 11:06:41,875 ] 16 root - INFO - connecting to mysql:news_data
+[ 2025-09-02 11:06:41,889 ] 23 root - INFO - Connection Established to: <pymysql.connections.Connection object at 0x0000022F7889BFD0>
+[ 2025-09-02 11:06:42,338 ] 32 root - INFO - Data Ingestion Completed
