@@ -1,3 +1,4 @@
 NLPvenv/
 .env
 dvc_commands.txt
+notebooks/
