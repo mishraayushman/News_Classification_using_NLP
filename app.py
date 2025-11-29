@@ -1,36 +1,32 @@
-from flask import Flask,render_template,request
+import streamlit as st
 import numpy as np
 import pandas as pd
-from src.News_Classification.pipelines.prediction_pipeline import PredictPipeline,CustomData
 
-
+from src.News_Classification.pipelines.prediction_pipeline import PredictPipeline, CustomData
 from sklearn.preprocessing import StandardScaler
 
-application = Flask(__name__)
+# Streamlit App
 
-app = application
+st.title("News Classification App")
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+st.write("Provide the news title and content to classify the category.")
 
-@app.route("/predict",methods=["GET","POST"])
+# Input fields (replacing Flask HTML form)
+title = st.text_input("News Title")
+content = st.text_area("News Content")
 
-def classify():
-    if request.method == "GET":
-        return render_template("home.html")
-    else:
-        data = CustomData(
-            title = request.form.get("title"),
-            content = request.form.get("content")#127.0.0.1:5000
-        )
-        pred_df = data.get_data_as_df()
-        print(pred_df)
+# Predict button
+if st.button("Predict"):
 
-        predict_pipeline = PredictPipeline()
-        results = predict_pipeline.predict(pred_df)
+    # Create data object same as Flask
+    data = CustomData(
+        title=title,
+        content=content
+    )
 
-        return render_template("home.html",results=results[0])
-    
-if __name__ == "__main__":
-    app.run(host="0.0.0.0",debug=True)
+    pred_df = data.get_data_as_df()
+
+    predict_pipeline = PredictPipeline()
+    results = predict_pipeline.predict(pred_df)
+
+    st.success(f"Predicted Category: {results[0]}")
