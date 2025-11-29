@@ -1,6 +1,6 @@
 import os
 import sys
-import pymysql
+# import pymysql
 from src.News_Classification.exception import NewsClassificationException
 from src.News_Classification.logger import logging
 from dotenv import load_dotenv
